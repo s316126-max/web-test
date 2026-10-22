@@ -1,449 +1,91 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>楊鎮彥｜個人網站</title>
-
   <style>
-    :root {
-      --bg: #07111f;
-      --card: #0c192b;
-      --text: #edf5ff;
-      --muted: #a9bbd3;
-      --blue: #1687ff;
-      --border: #1c3552;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Microsoft JhengHei", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: 0.3s;
-      line-height: 1.8;
-    }
-
-    body.light {
-      --bg: #eef5ff;
-      --card: #ffffff;
-      --text: #12243b;
-      --muted: #526780;
-      --border: #cbdcf0;
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 8%;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-      color: var(--blue);
-    }
-
-    nav ul {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-    }
-
-    nav a {
-      color: var(--text);
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--blue);
-    }
-
-    button {
-      cursor: pointer;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-      border-radius: 20px;
-      padding: 8px 15px;
-      font-size: 15px;
-    }
-
-    .hero {
-      min-height: 500px;
-      padding: 80px 10%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 40px;
-      background:
-        radial-gradient(ellipse at 80% 40%,
-        #103363 0%, transparent 45%);
-    }
-
-    .intro {
-      max-width: 600px;
-    }
-
-    .intro .hello {
-      color: var(--muted);
-      font-size: 22px;
-    }
-
-    h1 {
-      font-size: clamp(42px, 7vw, 72px);
-      line-height: 1.3;
-      margin: 8px 0;
-    }
-
-    .highlight {
-      color: var(--blue);
-      text-shadow: 0 0 25px #1687ff55;
-    }
-
-    .subtitle {
-      font-size: 20px;
-      margin-bottom: 20px;
-      color: var(--muted);
-    }
-
-    .intro p {
-      color: var(--muted);
-      margin-bottom: 25px;
-    }
-
-    .main-btn {
-      display: inline-block;
-      background: var(--blue);
-      color: white;
-      text-decoration: none;
-      padding: 10px 25px;
-      border-radius: 30px;
-      transition: 0.3s;
-    }
-
-    .main-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 25px #1687ff66;
-    }
-
-    .avatar {
-      width: 250px;
-      height: 250px;
-      flex-shrink: 0;
-      border: 4px solid var(--blue);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 100px;
-      color: var(--blue);
-      box-shadow: 0 0 45px #1687ff44;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-
-    section {
-      padding: 65px 10%;
-      scroll-margin-top: 65px;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 30px;
-      margin-bottom: 35px;
-    }
-
-    .section-title span {
-      color: var(--blue);
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      padding: 25px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-7px);
-      border-color: var(--blue);
-      box-shadow: 0 8px 30px #1687ff15;
-    }
-
-    .card .icon {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .skills {
-      max-width: 700px;
-      margin: auto;
-    }
-
-    .skill {
-      margin-bottom: 22px;
-    }
-
-    .skill-info {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 7px;
-    }
-
-    .bar {
-      height: 9px;
-      background: var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .bar div {
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, #1268e8, #39bdff);
-      border-radius: 20px;
-      transition: width 1.2s ease;
-    }
-
-    .contact {
-      text-align: center;
-    }
-
-    .contact p {
-      color: var(--muted);
-      margin-bottom: 20px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    @media (max-width: 850px) {
-      .hero {
-        flex-direction: column-reverse;
-        text-align: center;
-        padding: 55px 7%;
-      }
-
-      .avatar {
-        width: 170px;
-        height: 170px;
-        font-size: 70px;
-      }
-
-      .cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      nav {
-        padding: 14px 5%;
-      }
-
-      nav ul {
-        gap: 12px;
-        font-size: 14px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      nav {
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-
-      nav ul {
-        order: 3;
-        width: 100%;
-        justify-content: space-between;
-        gap: 5px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      section {
-        padding: 45px 7%;
-      }
-    }
+    :root{--bg:#07111f;--card:#0c192b;--text:#edf5ff;--muted:#a9bbd3;--blue:#1687ff;--border:#1c3552}
+    *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+    body{font-family:"Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);transition:.3s;line-height:1.8}
+    body.light{--bg:#eef5ff;--card:#fff;--text:#12243b;--muted:#526780;--border:#cbdcf0}
+    nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:16px 8%;background:var(--bg);border-bottom:1px solid var(--border)}
+    .logo{font-size:25px;font-weight:bold;color:var(--blue)}
+    nav ul{display:flex;gap:28px;list-style:none}
+    nav a{color:var(--text);text-decoration:none;transition:.3s}
+    nav a:hover{color:var(--blue)}
+    button{cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:8px 15px;font-size:15px}
+    .hero{min-height:500px;padding:80px 10%;display:flex;align-items:center;justify-content:space-between;gap:40px;background:radial-gradient(ellipse at 80% 40%,#103363 0%,transparent 45%)}
+    .intro{max-width:600px}.intro .hello{color:var(--muted);font-size:22px}
+    h1{font-size:clamp(42px,7vw,72px);line-height:1.3;margin:8px 0}
+    .highlight{color:var(--blue);text-shadow:0 0 25px #1687ff55}
+    .name-link{color:inherit;text-decoration:none;transition:.3s}.name-link:hover{color:#1687ff;text-shadow:0 0 20px #1687ff88}.name-link .highlight{color:#1687ff}
+    .subtitle{font-size:20px;margin-bottom:20px;color:var(--muted)}
+    .intro p{color:var(--muted);margin-bottom:25px}
+    .main-btn{display:inline-block;background:var(--blue);color:white;text-decoration:none;padding:10px 25px;border-radius:30px;transition:.3s}
+    .main-btn:hover{transform:translateY(-3px);box-shadow:0 0 25px #1687ff66}
+    .avatar{width:250px;height:250px;flex-shrink:0;border:4px solid var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:100px;color:var(--blue);box-shadow:0 0 45px #1687ff44;animation:float 3s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    section{padding:65px 10%;scroll-margin-top:65px}
+    .section-title{text-align:center;font-size:30px;margin-bottom:35px}.section-title span{color:var(--blue)}
+    .cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+    .card{padding:25px;background:var(--card);border:1px solid var(--border);border-radius:12px;transition:.3s}
+    .card:hover{transform:translateY(-7px);border-color:var(--blue);box-shadow:0 8px 30px #1687ff15}
+    .card .icon{font-size:32px;margin-bottom:10px}.card h3{margin-bottom:10px}.card p{font-size:14px;color:var(--muted)}
+    .skills{max-width:700px;margin:auto}.skill{margin-bottom:22px}.skill-info{display:flex;justify-content:space-between;margin-bottom:7px}
+    .bar{height:9px;background:var(--border);border-radius:20px;overflow:hidden}.bar div{height:100%;width:0;background:linear-gradient(90deg,#1268e8,#39bdff);border-radius:20px;transition:width 1.2s ease}
+    .contact{text-align:center}.contact p{color:var(--muted);margin-bottom:20px}
+    footer{text-align:center;padding:25px;border-top:1px solid var(--border);color:var(--muted);font-size:14px}
+    @media(max-width:850px){.hero{flex-direction:column-reverse;text-align:center;padding:55px 7%}.avatar{width:170px;height:170px;font-size:70px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}nav{padding:14px 5%}nav ul{gap:12px;font-size:14px}}
+    @media(max-width:480px){nav{flex-wrap:wrap;gap:12px}nav ul{order:3;width:100%;justify-content:space-between;gap:5px}.cards{grid-template-columns:1fr}section{padding:45px 7%}}
   </style>
 </head>
-
 <body>
-
-  <!-- 導覽列 -->
   <nav>
     <div class="logo">&lt;/&gt;</div>
-
-    <ul>
-      <li><a href="#home">首頁</a></li>
-      <li><a href="#about">關於我</a></li>
-      <li><a href="#skills">技能</a></li>
-      <li><a href="#contact">聯絡我</a></li>
-    </ul>
-
+    <ul><li><a href="#home">首頁</a></li><li><a href="#about">關於我</a></li><li><a href="#skills">技能</a></li><li><a href="#contact">聯絡我</a></li></ul>
     <button id="themeBtn" aria-label="切換深淺色">☀️ / 🌙</button>
   </nav>
-
-  <!-- 首頁 -->
   <header class="hero" id="home">
     <div class="intro">
       <div class="hello">Hi, 我是</div>
-      <h1>楊<span class="highlight">鎮彥</span></h1>
+      <h1><a href="about.html" class="name-link">楊<span class="highlight">鎮彥</span></a></h1>
       <div class="subtitle">熱愛科技・不斷學習・創造更好的未來</div>
-
-      <p>
-        我是一位喜歡探索新事物的學生。<br>
-        對電腦、程式設計與資訊科技充滿興趣，<br>
-        希望透過學習，製作出有趣又實用的作品。
-      </p>
-
+      <p>我是一位喜歡探索新事物的學生。<br>對電腦、程式設計與資訊科技充滿興趣，<br>希望透過學習，製作出有趣又實用的作品。</p>
       <a href="#about" class="main-btn">認識我更多 →</a>
     </div>
-
     <div class="avatar" aria-label="個人科技圖示">⌘</div>
   </header>
-
-  <!-- 關於我 -->
   <section id="about">
     <h2 class="section-title">關於<span>我</span></h2>
-
     <div class="cards">
-      <article class="card">
-        <div class="icon">👤</div>
-        <h3>個人介紹</h3>
-        <p>我是楊鎮彥，喜歡學習新知識，也樂於挑戰不同的事物。</p>
-      </article>
-
-      <article class="card">
-        <div class="icon">💻</div>
-        <h3>電腦科技</h3>
-        <p>對電腦與資訊科技有興趣，希望累積更多實作經驗。</p>
-      </article>
-
-      <article class="card">
-        <div class="icon">🎮</div>
-        <h3>我的興趣</h3>
-        <p>喜歡玩遊戲、接觸新科技，以及探索有趣的網路資訊。</p>
-      </article>
-
-      <article class="card">
-        <div class="icon">🚀</div>
-        <h3>未來目標</h3>
-        <p>持續提升自己的能力，完成更多屬於自己的作品。</p>
-      </article>
+      <article class="card"><div class="icon">👤</div><h3>個人介紹</h3><p>我是楊鎮彥，喜歡學習新知識，也樂於挑戰不同的事物。</p></article>
+      <article class="card"><div class="icon">💻</div><h3>電腦科技</h3><p>對電腦與資訊科技有興趣，希望累積更多實作經驗。</p></article>
+      <article class="card"><div class="icon">🎮</div><h3>我的興趣</h3><p>喜歡玩遊戲、接觸新科技，以及探索有趣的網路資訊。</p></article>
+      <article class="card"><div class="icon">🚀</div><h3>未來目標</h3><p>持續提升自己的能力，完成更多屬於自己的作品。</p></article>
     </div>
   </section>
-
-  <!-- 技能 -->
   <section id="skills">
     <h2 class="section-title">我的<span>技能</span></h2>
-
     <div class="skills">
-      <div class="skill">
-        <div class="skill-info">
-          <span>HTML 網頁設計</span>
-          <span>學習中</span>
-        </div>
-        <div class="bar"><div data-width="65%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-info">
-          <span>CSS 網頁美化</span>
-          <span>學習中</span>
-        </div>
-        <div class="bar"><div data-width="55%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-info">
-          <span>JavaScript 程式設計</span>
-          <span>學習中</span>
-        </div>
-        <div class="bar"><div data-width="35%"></div></div>
-      </div>
+      <div class="skill"><div class="skill-info"><span>HTML 網頁設計</span><span>學習中</span></div><div class="bar"><div data-width="65%"></div></div></div>
+      <div class="skill"><div class="skill-info"><span>CSS 網頁美化</span><span>學習中</span></div><div class="bar"><div data-width="55%"></div></div></div>
+      <div class="skill"><div class="skill-info"><span>JavaScript 程式設計</span><span>學習中</span></div><div class="bar"><div data-width="35%"></div></div></div>
     </div>
-    <p style="text-align:center;color:var(--muted);margin-top:20px;font-size:13px;">
-      ※ 技能進度為示範值，可依照自己的實際程度修改。
-    </p>
+    <p style="text-align:center;color:var(--muted);margin-top:20px;font-size:13px">※ 技能進度為示範值，可依照自己的實際程度修改。</p>
   </section>
-
-  <!-- 聯絡我 -->
-  <section id="contact" class="contact">
-    <h2 class="section-title">聯絡<span>我</span></h2>
-    <p>感謝你來到我的個人網站！</p>
-    <p>歡迎一起交流電腦、科技與網頁設計。</p>
-    <a href="#home" class="main-btn">回到首頁 ↑</a>
-  </section>
-
-  <footer>
-    © <span id="year"></span> 楊鎮彥 ｜ Keep Learning. Keep Going.
-  </footer>
-
+  <section id="contact" class="contact"><h2 class="section-title">聯絡<span>我</span></h2><p>感謝你來到我的個人網站！</p><p>歡迎一起交流電腦、科技與網頁設計。</p><a href="#home" class="main-btn">回到首頁 ↑</a></section>
+  <footer>© <span id="year"></span> 楊鎮彥 ｜ Keep Learning. Keep Going.</footer>
   <script>
-    // 深色與淺色模式切換
-    const themeBtn = document.getElementById("themeBtn");
-
-    themeBtn.addEventListener("click", function () {
+    const themeBtn=document.getElementById("themeBtn");
+    themeBtn.addEventListener("click",function(){
       document.body.classList.toggle("light");
-
-      themeBtn.textContent =
-        document.body.classList.contains("light")
-          ? "🌙 深色模式"
-          : "☀️ 淺色模式";
+      themeBtn.textContent=document.body.classList.contains("light")?"🌙 深色模式":"☀️ 淺色模式";
     });
-
-    // 顯示目前年份
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-
-    // 技能進度條動畫
-    window.addEventListener("load", function () {
-      document.querySelectorAll(".bar div").forEach(function (bar) {
-        bar.style.width = bar.dataset.width;
-      });
+    document.getElementById("year").textContent=new Date().getFullYear();
+    window.addEventListener("load",function(){
+      document.querySelectorAll(".bar div").forEach(function(bar){bar.style.width=bar.dataset.width;});
     });
   </script>
-
 </body>
 </html>
